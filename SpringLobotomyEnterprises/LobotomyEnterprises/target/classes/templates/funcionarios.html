@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Funcionários</title>
+</head>
+<body>
+    <h1>Funcionários</h1>
+
+    <a th:href="@{/funcionarios/novofuncionario}">Novo Funcionário</a>
+
+<br>
+<br>
+
+    <form th:action="@{/funcionarios/buscar}" method="get" style="margin-top:10px;">
+        <label>Buscar por ID:</label>
+        <input type="number" name="id" placeholder="Digite o ID" required/>
+        <button type="submit">Buscar</button>
+    </form>
+
+<br>
+<br>
+
+    <form th:action="@{/funcionarios/filtrar}" method="get">
+        <label>Nome:</label>
+        <input type="text" name="nome" />
+        <label>CPF:</label>
+        <input type="text" name="cpf" />
+        <label>Salário Mínimo:</label>
+        <input type="number" name="salarioMin" step="0.01" />
+        <label>Salário Máximo:</label>
+        <input type="number" name="salarioMax" step="0.01" />
+        <button type="submit">Filtrar</button>
+    </form>
+<br>
+<br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Salário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${funcionarios}">
+                <td th:text="${f.id}">ID</td>
+                <td th:text="${f.nome}">Nome</td>
+                <td th:text="${f.cpf}">CPF</td>
+                <td th:text="${f.salario}">Salário</td>
+                <td>
+                    <a th:href="@{/funcionarios/editar/{id}(id=${f.id})}">Editar</a> |
+                    <a th:href="@{/funcionarios/deletar/{id}(id=${f.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

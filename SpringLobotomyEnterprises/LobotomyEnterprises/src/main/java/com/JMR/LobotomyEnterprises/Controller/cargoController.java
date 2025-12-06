@@ -2,11 +2,13 @@ package com.JMR.LobotomyEnterprises.Controller;
 
 import com.JMR.LobotomyEnterprises.DAO.CargoDAO;
 import com.JMR.LobotomyEnterprises.model.Cargo;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.*;
 
-@RestController
+import java.util.List;
+
+@Controller 
 @RequestMapping("/cargos")
 public class cargoController {
 
@@ -16,46 +18,66 @@ public class cargoController {
         this.cargoDAO = cargoDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<Cargo> create(@RequestBody Cargo cargo) {
-        return ResponseEntity.ok(cargoDAO.create(cargo));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Cargo> findById(@PathVariable Long id) {
-        return cargoDAO.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
 
     @GetMapping
-    public ResponseEntity<List<Cargo>> findByFilters(
+    public String listarCargos(Model model) {
+        List<Cargo> cargos = cargoDAO.findAll();
+        model.addAttribute("cargos", cargos);
+        return "cargos"; 
+    }
+
+
+    @GetMapping("/novocargo")
+    public String novoCargo(Model model) {
+        model.addAttribute("cargo", new Cargo());
+        return "cargo-form"; 
+    }
+
+    @PostMapping("/novocargo")
+    public String criarCargo(@ModelAttribute Cargo cargo) {
+        cargoDAO.create(cargo);
+        return "redirect:/cargos";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editarCargo(@PathVariable Long id, Model model) {
+        Cargo c = cargoDAO.findById(id).orElse(null);
+        model.addAttribute("cargo", c);
+        return "cargo-form";
+    }
+
+
+    @PostMapping("/editar/{id}")
+    public String atualizarCargo(@PathVariable Long id, @ModelAttribute Cargo cargo) {
+        cargoDAO.update(id, cargo);
+        return "redirect:/cargos";
+    }
+
+    @GetMapping("/deletar/{id}")
+    public String deletarCargo(@PathVariable Long id) {
+        cargoDAO.delete(id);
+        return "redirect:/cargos";
+    }
+
+    @GetMapping("/buscar")
+    public String buscarCargo(@RequestParam Long id, Model model) {
+        Cargo c = cargoDAO.findById(id).orElse(null);
+        model.addAttribute("cargo", c);
+        return "cargo-busca";
+    }
+
+
+    @GetMapping("/filtrar")
+    public String filtrarCargos(
             @RequestParam(required = false) String titulo,
             @RequestParam(required = false) String descricao,
             @RequestParam(required = false) Integer nivelMinimo,
-            @RequestParam(required = false) String requisitos
-    ) {
-        return ResponseEntity.ok(
-                cargoDAO.findByFilters(titulo, descricao, nivelMinimo, requisitos)
-        );
+            @RequestParam(required = false) String requisitos,
+            Model model) {
+
+        List<Cargo> filtrados = cargoDAO.findByFilters(titulo, descricao, nivelMinimo, requisitos);
+        model.addAttribute("cargos", filtrados);
+        return "cargos"; 
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Cargo>> findAll() {
-        return ResponseEntity.ok(cargoDAO.findAll());
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Cargo cargo) {
-        int rows = cargoDAO.update(id, cargo);
-        if (rows == 0) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        int rows = cargoDAO.delete(id);
-        if (rows == 0) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
-    }
 }

@@ -2,12 +2,13 @@ package com.JMR.LobotomyEnterprises.Controller;
 
 import com.JMR.LobotomyEnterprises.DAO.SetorDAO;
 import com.JMR.LobotomyEnterprises.model.Setor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller 
 @RequestMapping("/setores")
 public class setorController {
 
@@ -17,42 +18,63 @@ public class setorController {
         this.setorDAO = setorDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<Setor> create(@RequestBody Setor setor) {
-        return ResponseEntity.ok(setorDAO.create(setor));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Setor> findById(@PathVariable Long id) {
-        return setorDAO.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
     @GetMapping
-    public ResponseEntity<List<Setor>> findByFilters(
+    public String listarSetores(Model model) {
+        List<Setor> setores = setorDAO.findAll();
+        model.addAttribute("setores", setores);
+        return "setores"; 
+    }
+
+
+    @GetMapping("/novosetor")
+    public String novoSetor(Model model) {
+        model.addAttribute("setor", new Setor());
+        return "setor-form";
+    }
+
+    @PostMapping("/novosetor")
+    public String criarSetor(@ModelAttribute Setor setor) {
+        setorDAO.create(setor);
+        return "redirect:/setores";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editarSetor(@PathVariable Long id, Model model) {
+        Setor s = setorDAO.findById(id).orElse(null);
+        model.addAttribute("setor", s);
+        return "setor-form";
+    }
+
+    @PostMapping("/editar/{id}")
+    public String atualizarSetor(@PathVariable Long id, @ModelAttribute Setor setor) {
+        setorDAO.update(id, setor);
+        return "redirect:/setores";
+    }
+
+
+    @GetMapping("/deletar/{id}")
+    public String deletarSetor(@PathVariable Long id) {
+        setorDAO.delete(id);
+        return "redirect:/setores";
+    }
+
+    @GetMapping("/buscar")
+    public String buscarSetor(@RequestParam Long id, Model model) {
+        Setor s = setorDAO.findById(id).orElse(null);
+        model.addAttribute("setor", s);
+        return "setor-busca";
+    }
+    
+
+    @GetMapping("/filtrar")
+    public String filtrarSetores(
             @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String idSetor
-    ) {
-        return ResponseEntity.ok(setorDAO.findByFilters(nome, idSetor));
-    }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Setor>> findAll() {
-        return ResponseEntity.ok(setorDAO.findAll());
-    }
+            @RequestParam(required = false) String idSetor, 
+            Model model) {
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Setor setor) {
-        int rows = setorDAO.update(id, setor);
-        if (rows == 0) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        int rows = setorDAO.delete(id);
-        if (rows == 0) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
+        List<Setor> filtrados = setorDAO.findByFilters(nome, idSetor);
+        model.addAttribute("setores", filtrados);
+        return "setores"; 
     }
 }
