@@ -40,3 +40,50 @@ Enfim : o projeto irá utilizar questões de associação, agregação e composi
 
 <h4>3. A partir da tela de consulta, permitir as operações de updade e de delete destas duas entidades.</h4>
 
+<h2>MODELO DO BANCO DE DADOS UTILIZADO</h2>
+
+CREATE DATABASE IF NOT EXISTS lobotomy_enterprises;
+USE lobotomy_enterprises;
+
+CREATE TABLE conta_empresarial (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    dataDeNascimento DATE NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    email_pessoal VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE setor (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    id_setor VARCHAR(20) UNIQUE NOT NULL
+);
+
+CREATE TABLE cargo (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    nivel_salarial_minimo INT NOT NULL,
+    requisitos TEXT
+);
+
+CREATE TABLE funcionario (
+    id BIGINT PRIMARY KEY,
+    email_empresarial VARCHAR(100) UNIQUE NOT NULL,
+    nivel_formacao VARCHAR(100),
+    horas_semanais INT,
+    salario INT,
+    matricula VARCHAR(50) UNIQUE NOT NULL,
+    setor_id BIGINT,
+    cargo_id BIGINT,
+    CONSTRAINT fk_func_conta
+        FOREIGN KEY (id) REFERENCES conta_empresarial(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_func_setor
+        FOREIGN KEY (setor_id) REFERENCES setor(id),
+    CONSTRAINT fk_func_cargo
+        FOREIGN KEY (cargo_id) REFERENCES cargo(id)
+);
+
+
