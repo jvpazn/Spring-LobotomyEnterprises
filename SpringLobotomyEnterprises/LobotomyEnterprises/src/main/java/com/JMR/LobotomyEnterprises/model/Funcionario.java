@@ -14,25 +14,15 @@ public class Funcionario {
     private int horasSemanais;
     private int salario;
     private String matricula;
-    private Setor setor;
-    private Cargo cargo;
+    private Long setorId; 
+    private Long cargoId; 
+
 
     public Funcionario() {}
 
-    public Funcionario(
-            String nome,
-            String senha,
-            String dataDeNascimento,
-            String CPF,
-            String emailPessoal,
-            String emailEmpresarial,
-            String nivelFormacao,
-            int horasSemanais,
-            int salario,
-            String matricula,
-            Setor setor,
-            Cargo cargo
-    ) {
+
+    public Funcionario(Long id, String nome, String senha, String dataDeNascimento, String CPF, String emailPessoal, String emailEmpresarial, String nivelFormacao, int horasSemanais, int salario, String matricula, Long setorId, Long cargoId) {
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.dataDeNascimento = dataDeNascimento;
@@ -43,54 +33,112 @@ public class Funcionario {
         this.horasSemanais = horasSemanais;
         this.salario = salario;
         this.matricula = matricula;
-        this.setor = setor;
-        this.cargo = cargo;
+        this.setorId = setorId;
+        this.cargoId = cargoId;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public Long getId() {
+        return this.id;
+    }
 
-    public String getSenha() { return senha; }
-    public void setSenha(String senha) { this.senha = senha; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDataDeNascimento() { return dataDeNascimento; }
-    public void setDataDeNascimento(String dataDeNascimento) { this.dataDeNascimento = dataDeNascimento; }
+    public String getNome() {
+        return this.nome;
+    }
 
-    public String getCPF() { return CPF; }
-    public void setCPF(String CPF) { this.CPF = CPF; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getEmailPessoal() { return emailPessoal; }
-    public void setEmailPessoal(String emailPessoal) { this.emailPessoal = emailPessoal; }
+    public String getSenha() {
+        return this.senha;
+    }
 
-    public String getEmailEmpresarial() { return emailEmpresarial; }
-    public void setEmailEmpresarial(String emailEmpresarial) { this.emailEmpresarial = emailEmpresarial; }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-    public String getNivelFormacao() { return nivelFormacao; }
-    public void setNivelFormacao(String nivelFormacao) { this.nivelFormacao = nivelFormacao; }
+    public String getDataDeNascimento() {
+        return this.dataDeNascimento;
+    }
 
-    public int getHorasSemanais() { return horasSemanais; }
-    public void setHorasSemanais(int horasSemanais) { this.horasSemanais = horasSemanais; }
+    public void setDataDeNascimento(String dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
 
-    public int getSalario() { return salario; }
-    public void setSalario(int salario) { this.salario = salario; }
+    public String getCPF() {
+        return this.CPF;
+    }
 
-    public String getMatricula() { return matricula; }
-    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
 
-    public Setor getSetor() { return setor; }
-    public void setSetor(Setor setor) { this.setor = setor; }
+    public String getEmailPessoal() {
+        return this.emailPessoal;
+    }
 
-    public Cargo getCargo() { return cargo; }
-    public void setCargo(Cargo cargo) { this.cargo = cargo; }
+    public void setEmailPessoal(String emailPessoal) {
+        this.emailPessoal = emailPessoal;
+    }
 
+    public String getEmailEmpresarial() {
+        return this.emailEmpresarial;
+    }
 
-    public void dadosPublicos() {
-        System.out.println("Nome: " + nome);
-        System.out.println("Setor em que trabalha: " + (setor != null ? setor.getNome() : "Não definido"));
-        System.out.println("Nível de Formação: " + nivelFormacao);
-        System.out.println("Cargo: " + (cargo != null ? cargo.getTitulo() : "Não definido"));
+    public void setEmailEmpresarial(String emailEmpresarial) {
+        this.emailEmpresarial = emailEmpresarial;
+    }
+
+    public String getNivelFormacao() {
+        return this.nivelFormacao;
+    }
+
+    public void setNivelFormacao(String nivelFormacao) {
+        this.nivelFormacao = nivelFormacao;
+    }
+
+    public int getHorasSemanais() {
+        return this.horasSemanais;
+    }
+
+    public void setHorasSemanais(int horasSemanais) {
+        this.horasSemanais = horasSemanais;
+    }
+
+    public int getSalario() {
+        return this.salario;
+    }
+
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    public String getMatricula() {
+        return this.matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public Long getSetorId() {
+        return this.setorId;
+    }
+
+    public void setSetorId(Long setorId) {
+        this.setorId = setorId;
+    }
+
+    public Long getCargoId() {
+        return this.cargoId;
+    }
+
+    public void setCargoId(Long cargoId) {
+        this.cargoId = cargoId;
     }
 }

@@ -2,6 +2,8 @@ package com.JMR.LobotomyEnterprises.Controller;
 
 import com.JMR.LobotomyEnterprises.DAO.FuncionarioDAO;
 import com.JMR.LobotomyEnterprises.model.Funcionario;
+import com.JMR.LobotomyEnterprises.DAO.SetorDAO; 
+import com.JMR.LobotomyEnterprises.DAO.CargoDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,14 @@ import java.util.List;
 public class funcionarioController {
 
     private final FuncionarioDAO funcionarioDAO;
+    private final SetorDAO setorDAO; 
+    private final CargoDAO cargoDAO;
 
-    public funcionarioController(FuncionarioDAO funcionarioDAO) {
+    public funcionarioController(FuncionarioDAO funcionarioDAO, SetorDAO setorDAO, 
+        CargoDAO cargoDAO) {
         this.funcionarioDAO = funcionarioDAO;
+        this.setorDAO = setorDAO; 
+        this.cargoDAO = cargoDAO;
     }
 
     @GetMapping
@@ -29,6 +36,10 @@ public class funcionarioController {
     @GetMapping("/novofuncionario")
     public String novoFuncionario(Model model) {
         model.addAttribute("funcionario", new Funcionario());
+
+        model.addAttribute("setores", setorDAO.findAll());
+        model.addAttribute("cargos", cargoDAO.findAll());
+        
         return "novofuncionario"; 
     }
 
@@ -40,11 +51,14 @@ public class funcionarioController {
     }
 
 
-    @GetMapping("/editar/{id}")
+@GetMapping("/editar/{id}")
     public String editarFuncionario(@PathVariable Long id, Model model) {
         Funcionario f = funcionarioDAO.findById(id).orElse(null);
         model.addAttribute("funcionario", f);
-        return "funcionario-form";
+        model.addAttribute("setores", setorDAO.findAll());
+        model.addAttribute("cargos", cargoDAO.findAll());
+        
+        return "novofuncionario";
     }
 
 
@@ -66,7 +80,7 @@ public class funcionarioController {
     public String buscarFuncionario(@RequestParam Long id, Model model) {
         Funcionario f = funcionarioDAO.findById(id).orElse(null);
         model.addAttribute("funcionario", f);
-        return "funcionario-busca"; // novo template para exibir resultado
+        return "funcionarioID";
     }
 
 

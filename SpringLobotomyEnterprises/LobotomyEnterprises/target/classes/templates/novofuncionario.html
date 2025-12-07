@@ -57,28 +57,27 @@
 
         <br>
 
-        <fieldset>
-            <legend>Setor e Cargo</legend>
-            
-            <label>Setor:</label>
-            <select th:field="*{setor}" required>
-                <option value="">Selecione um Setor</option>
-                <option th:each="s : ${setores}" 
-                        th:value="${s.id}" 
-                        th:text="${s.nome}">Nome do Setor</option>
-            </select><br/>
+<fieldset>
+                <legend>Setor e Cargo</legend>
+                
+                <label>Setor:</label>
+                <select th:field="*{setorId}" required>
+                    <option value="">Selecione um Setor</option>
+                    <option th:each="s : ${setores}" 
+                            th:value="${s.id}" 
+                            th:text="${s.nome}">Nome do Setor</option>
+                </select><br/>
 
-            <label>Cargo:</label>
-            <select th:field="*{cargo}" required>
-                <option value="">Selecione um Cargo</option>
-                <option th:each="c : ${cargos}" 
-                        th:value="${c.id}" 
-                        th:text="${c.titulo}">Nome do Cargo</option>
-            </select><br/>
-
-        </fieldset>
-
-        <button type="submit" style="margin-top:10px;">Salvar</button>
-    </form>
+                <label>Cargo:</label>
+                <select th:field="*{cargoId}" required>
+                    <option value="">Selecione um Cargo</option>
+                    <option th:each="c : ${cargos}" 
+                            th:value="${c.id}" 
+                            th:text="${c.titulo}">Nome do Cargo</option>
+                </select><br/>
+    
+            </fieldset>         
+            <button type="submit" style="margin-top:10px;">Salvar</button>
+        </form>
 </body>
 </html>

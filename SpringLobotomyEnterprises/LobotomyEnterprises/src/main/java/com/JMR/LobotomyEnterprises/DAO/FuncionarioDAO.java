@@ -10,8 +10,10 @@ public class FuncionarioDAO {
 
     private final JdbcClient jdbcClient;
 
+
     public FuncionarioDAO(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
+
     }
 
     public Funcionario create(Funcionario funcionario) {
@@ -28,7 +30,7 @@ public class FuncionarioDAO {
             )
         """;
 
-        jdbcClient.sql(sql).param("nome", funcionario.getNome()).param("senha", funcionario.getSenha()).param("dataDeNascimento", funcionario.getDataDeNascimento()).param("cpf", funcionario.getCPF()).param("emailPessoal", funcionario.getEmailPessoal()).param("emailEmpresarial", funcionario.getEmailEmpresarial()).param("nivelFormacao", funcionario.getNivelFormacao()).param("horasSemanais", funcionario.getHorasSemanais()).param("salario", funcionario.getSalario()).param("matricula", funcionario.getMatricula()).param("setorId", funcionario.getSetor() != null ? funcionario.getSetor().getId() : null).param("cargoId", funcionario.getCargo() != null ? funcionario.getCargo().getId() : null).update();
+        jdbcClient.sql(sql).param("nome", funcionario.getNome()).param("senha", funcionario.getSenha()).param("dataDeNascimento", funcionario.getDataDeNascimento()).param("cpf", funcionario.getCPF()).param("emailPessoal", funcionario.getEmailPessoal()).param("emailEmpresarial", funcionario.getEmailEmpresarial()).param("nivelFormacao", funcionario.getNivelFormacao()).param("horasSemanais", funcionario.getHorasSemanais()).param("salario", funcionario.getSalario()).param("matricula", funcionario.getMatricula()).param("setorId", funcionario.getSetorId()).param("cargoId", funcionario.getCargoId()).update();
 
         Long id = jdbcClient.sql("SELECT LAST_INSERT_ID()").query(Long.class).single();
 
@@ -99,7 +101,7 @@ public List<Funcionario> findByFilters(
             WHERE id = :id
         """;
 
-            return jdbcClient.sql(sql).param("nome", funcionario.getNome()).param("senha", funcionario.getSenha()).param("dataDeNascimento", funcionario.getDataDeNascimento()).param("cpf", funcionario.getCPF()).param("emailPessoal", funcionario.getEmailPessoal()).param("emailEmpresarial", funcionario.getEmailEmpresarial()).param("nivelFormacao", funcionario.getNivelFormacao()).param("horasSemanais", funcionario.getHorasSemanais()).param("salario", funcionario.getSalario()).param("matricula", funcionario.getMatricula()).param("setorId", funcionario.getSetor() != null ? funcionario.getSetor().getId() : null).param("cargoId", funcionario.getCargo() != null ? funcionario.getCargo().getId() : null).update();
+            return jdbcClient.sql(sql).param("nome", funcionario.getNome()).param("senha", funcionario.getSenha()).param("dataDeNascimento", funcionario.getDataDeNascimento()).param("cpf", funcionario.getCPF()).param("emailPessoal", funcionario.getEmailPessoal()).param("emailEmpresarial", funcionario.getEmailEmpresarial()).param("nivelFormacao", funcionario.getNivelFormacao()).param("horasSemanais", funcionario.getHorasSemanais()).param("salario", funcionario.getSalario()).param("matricula", funcionario.getMatricula()).param("setorId", funcionario.getSetorId()).param("cargoId", funcionario.getCargoId()).param("id", id).update();
     }
 
     public int delete(Long id) {
