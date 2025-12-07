@@ -26,11 +26,9 @@ Renan Aprigio Dias https://github.com/renandias3158
 
 <h2>SPRING - LOBOTOMY ENTERPRISE</h2>
 
-uma pequena empresa com o nome referenciando o universo da project moon.
+uma pequena empresa com o nome referenciando o universo da project moon. Dessa vez com Springboot.
 
-O grupo irá junto fazer tanto UML quanto a codificação. Planejamos concluir o projeto até a data de entrega ou até antes.
-
-Enfim : o projeto irá utilizar questões de associação, agregação e composição. Planejamos fazer um projeto simples, entendível e funcional.
+A versão é mais minimalista, dessa vez só temos 3 identidades, sendo elas funcionario, cargo e setor.
 
 <h2>Especificações</h2>
 
