@@ -38,6 +38,8 @@ A versão é mais minimalista, dessa vez só temos 3 identidades, sendo elas fun
 
 <h4>3. A partir da tela de consulta, permitir as operações de updade e de delete destas duas entidades.</h4>
 
+<h2>NÃO SE ESQUEÇA DE ADICIONAR O BANCO DE DADOS NO APPLICATION_PROPERTIES</h2>
+
 <h2>MODELO DO BANCO DE DADOS UTILIZADO</h2>
 
 CREATE DATABASE IF NOT EXISTS lobotomy_enterprises;
