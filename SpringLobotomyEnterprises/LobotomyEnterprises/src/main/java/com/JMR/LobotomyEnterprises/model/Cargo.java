@@ -8,7 +8,8 @@ public class Cargo {
     private String requisitos;
 
 
-    public Cargo(String titulo, String descricao, int nivelSalarialMinimo, String requisitos) {
+    public Cargo(Long id, String titulo, String descricao, int nivelSalarialMinimo, String requisitos) {
+        this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.nivelSalarialMinimo = nivelSalarialMinimo;

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de setores</title>
+</head>
+<body>
+    <h1>Setores</h1>
+    <a href="/">Voltar</a>
+    <a th:href="@{/setores/novosetor}">Novo Setor</a>
+
+<br>
+<br>
+
+    <form th:action="@{/setores/buscar}" method="get" style="margin-top:10px;">
+        <label>Buscar por ID:</label>
+        <input type="number" name="id" placeholder="Digite o ID" required/>
+        <button type="submit">Buscar</button>
+    </form>
+
+<br>
+<br>
+
+    <form th:action="@{/setores/filtrar}" method="get">
+        <label>Nome:</label>
+        <input type="text" name="nome" />
+        <label>id do setor:</label>
+        <input type="text" name="idSetor" />
+        <button type="submit">Filtrar</button>
+
+    </form>
+<br>
+<br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>nome</th>
+                <th>id do setor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${setores}">
+                <td th:text="${f.id}">ID</td>
+                <td th:text="${f.nome}">nome</td>
+                <td th:text="${f.id_Setor}">id do setor</td>
+
+
+                <td>
+                    <a th:href="@{/setores/editar/{id}(id=${f.id})}">Editar</a> |
+                    <a th:href="@{/setores/deletar/{id}(id=${f.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

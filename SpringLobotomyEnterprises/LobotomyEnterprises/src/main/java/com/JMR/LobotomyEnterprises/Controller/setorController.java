@@ -29,7 +29,7 @@ public class setorController {
     @GetMapping("/novosetor")
     public String novoSetor(Model model) {
         model.addAttribute("setor", new Setor());
-        return "setor-form";
+        return "novosetor";
     }
 
     @PostMapping("/novosetor")
@@ -42,7 +42,7 @@ public class setorController {
     public String editarSetor(@PathVariable Long id, Model model) {
         Setor s = setorDAO.findById(id).orElse(null);
         model.addAttribute("setor", s);
-        return "setor-form";
+        return "novosetor";
     }
 
     @PostMapping("/editar/{id}")
@@ -62,14 +62,13 @@ public class setorController {
     public String buscarSetor(@RequestParam Long id, Model model) {
         Setor s = setorDAO.findById(id).orElse(null);
         model.addAttribute("setor", s);
-        return "setor-busca";
+        return "setorID";
     }
     
 
     @GetMapping("/filtrar")
     public String filtrarSetores(
             @RequestParam(required = false) String nome,
-
             @RequestParam(required = false) String idSetor, 
             Model model) {
 

@@ -39,10 +39,7 @@ public List<Cargo> findAll() {
     }
 
     public List<Cargo> findByFilters(
-            String titulo,
-            String descricao,
-            Integer nivelMinimo,
-            String requisitos
+            String titulo
     ) {
         StringBuilder sql = new StringBuilder("SELECT * FROM cargo WHERE 1=1 ");
         Map<String, Object> params = new HashMap<>();

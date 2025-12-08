@@ -30,7 +30,7 @@ public class cargoController {
     @GetMapping("/novocargo")
     public String novoCargo(Model model) {
         model.addAttribute("cargo", new Cargo());
-        return "cargo-form"; 
+        return "novocargo"; 
     }
 
     @PostMapping("/novocargo")
@@ -43,7 +43,7 @@ public class cargoController {
     public String editarCargo(@PathVariable Long id, Model model) {
         Cargo c = cargoDAO.findById(id).orElse(null);
         model.addAttribute("cargo", c);
-        return "cargo-form";
+        return "novocargo";
     }
 
 
@@ -63,19 +63,16 @@ public class cargoController {
     public String buscarCargo(@RequestParam Long id, Model model) {
         Cargo c = cargoDAO.findById(id).orElse(null);
         model.addAttribute("cargo", c);
-        return "cargo-busca";
+        return "cargoID";
     }
 
 
     @GetMapping("/filtrar")
     public String filtrarCargos(
             @RequestParam(required = false) String titulo,
-            @RequestParam(required = false) String descricao,
-            @RequestParam(required = false) Integer nivelMinimo,
-            @RequestParam(required = false) String requisitos,
             Model model) {
 
-        List<Cargo> filtrados = cargoDAO.findByFilters(titulo, descricao, nivelMinimo, requisitos);
+        List<Cargo> filtrados = cargoDAO.findByFilters(titulo);
         model.addAttribute("cargos", filtrados);
         return "cargos"; 
     }

@@ -6,7 +6,8 @@ public class Setor {
     private String id_Setor;
 
 
-    public Setor(String nome, String id_Setor) {
+    public Setor(Long id, String nome, String id_Setor) {
+        this.id = id;
         this.nome = nome;
         this.id_Setor = id_Setor;
     }
