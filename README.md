@@ -57,6 +57,7 @@ CREATE TABLE cargo (
     requisitos TEXT
 );
 
+
 CREATE TABLE funcionario (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -77,4 +78,26 @@ CREATE TABLE funcionario (
         FOREIGN KEY (cargo_id) REFERENCES cargo(id)
 );
 
+-- OPCIONAL, INSERTS PARA JÁ DEIXAR O BANCO POPULADO
+
+INSERT INTO cargo (titulo, descricao, nivelSalarialMinimo, requisitos) VALUES
+('Gerente', 'Gerencia os funcionários no setor onde está', 23000, 'Saúde mental forte, ensino superior completo'),
+('Pleno', 'Trabalhador de cargo médio, segue as ordens dos superiores', 4000, 'Ensino fundamental completo e experiência média no mercado de trabalho'),
+('Trabalhador Junior', 'Trabalhador Iniciante e novo as tradições da empresa, não confundir com estagiário', 2000, 'Ensino fundamental completo'),
+('Trabalhador Sênior', 'Trabalhador experiente e preparado para as tradições da empresa', 6100, 'Ensino Superior completo e uma boa experiência como funcionário na empresa');
+
+INSERT INTO setor (nome, id_setor) VALUES
+('SETOR DE DESENVOLVIMENTO DE JOGOS', '1'),
+('SETOR DE RELACOES PESSOAIS', '2'),
+('SETOR DE FINANCAS', '3');
+
+INSERT INTO funcionario (nome, senha, dataDeNascimento, cpf, emailPessoal, emailEmpresarial, nivelFormacao, horasSemanais, salario, matricula, setor_id, cargo_id) VALUES
+('John T. Mantleholder', 'ERAMJohn', '1974-10-05', '938747182-43', 'eramjohnmantle@gmail.com', 'jtm@funcionario.lobEnterprise.com', 'Doutorado', 70, 23000, 'Newlobloblob20XX-854', 2, 1),
+('Renan Aprigio dias de Moura', 'CARROSLEGAIS123', '2008-05-31', '857439285-54', 'RenanDias3158@gmail.com', 'radm@funcionario.lobEnterprise.com', 'Doutorado', 70, 25000, 'Newlobloblob20XX-341', 3, 1),
+('Roland Orlandofurioso Nascimento', '1m1ssmyw1f3_123', '1993-11-23', '954837214-52', 'orlandofuriosoAngelica@gmail.com', 'ron@funcionario.lobEnterprise.com', 'Pos-Doutorado', 120, 30000, 'Newlobloblob20XX-182', 1, 1),
+('BongBong Library of ruina', 'Bong123bomg', '1993-04-15', '536574234-64', 'bonghehe123@gmail.com', 'bbg@funcionario.lobEnterprise.com', 'Ensino Superior Completo', 60, 7000, 'Newlobloblob20XX-524', 2, 4),
+('Jailma Oliveira', 'CIENCIASS0CIAIS', '1975-08-17', '943179329-55', 'JailmaOliveira12345@gmail.com', 'jo@funcionario.lobEnterprise.com', 'Mestrado', 60, 5600, 'Newlobloblob20XX-283', 3, 2),
+('Joao Victor da Paz Nascimento', 'joaoGatinhosF0F1nhos', '2009-05-28', '582917283-91', 'joaovitor223344joao@gmail.com', 'jvpn@funcionario.lobEnterprise.com', 'Doutorado', 80, 6210, 'Newlobloblob20XX-845', 1, 4),
+('Viktor henrique da silva', '7123e1h893UHQaS&*', '2000-10-05', '847632823-12', 'vikorhsilva@gmail.com', 'vhs@funcionario.lobEnterprise.com', 'Ensino Medio Completo', 45, 2500, 'Newlobloblob20XX-192', 1, 3),
+('Matheus Luciano de Cabritos Figueiredo', 'KONOMATH3U5DA', '2008-09-29', '593274837-23', 'MatheusCabritinhos@gmail.com', 'mlcf@funcionario.lobEnterprise.com', 'Bacharelado', 45, 5900, 'Newlobloblob20XX-593', 3, 2);
 
