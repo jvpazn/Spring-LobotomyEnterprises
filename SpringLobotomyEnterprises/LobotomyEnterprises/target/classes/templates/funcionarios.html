@@ -3,11 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Funcionários</title>
+            <style>
+            @import url('https://fonts.cdnfonts.com/css/norwester');
+
+            body{
+                font-family: 'Norwester', sans-serif;
+                background-image: url("/images/Funcionarios.png");
+                color: white;
+                background-size: cover; 
+                background-repeat: no-repeat; 
+            }
+
+            .coluna{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .Angela {
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 480px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;   
+        }
+
+        p{
+            margin: 0;
+        }
+
+            a{
+                color: aqua;
+            }
+            a:visited{
+                color: aqua;
+            }
+
+        table{
+            background-color: black;
+        }
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
 </head>
 <body>
     <h1>Funcionários</h1>
-    <a href="/">Voltar</a>
-    <a th:href="@{/funcionarios/novofuncionario}">Novo Funcionário</a>
+
+<div class="coluna">
+    <p>>Para <a href="/">Voltar</a> Clique No texto diferente do diálogo.</p>
+    <p>>Para adicionar um <a th:href="@{/funcionarios/novofuncionario}">Novo Funcionário</a> Clique No texto diferente do diálogo.</p>
+    <p>>Para Buscar um Funcionario por id, bote o id dele na primeira caixinha.</p>
+    <p>>Você consegue filtrar por nome, botando apenas uma letra irá filtrar todos que possuem aquela letra.</p>
+    <p>>Para Cpf, Apenas botando o cpf completo.</p>
+
+
+
+</div>
 
 <br>
 <br>
@@ -53,5 +104,9 @@
             </tr>
         </tbody>
     </table>
+
+    <img th:src="@{/images/AngelaHappyFace.png}" class ="Angela">
+
+    <footer> @losJMR 2025</footer>
 </body>
 </html>
