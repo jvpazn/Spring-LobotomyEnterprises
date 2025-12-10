@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Seja Bem Vindo</title>
+        <style>
+            @import url('https://fonts.cdnfonts.com/css/norwester');
+
+            body{
+                font-family: 'Norwester', sans-serif;
+                background-image: url("/images/Sejabemvindo.png");
+                color: white;
+                background-size: cover; 
+                background-repeat: no-repeat; 
+            }
+
+            .Angela {
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 480px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;   
+        }
+
+            .coluna{
+                width: 360px;
+                display: flex;
+                flex-direction: column;
+                font-size: 36px;
+            }
+
+            a{
+                color: aqua;
+            }
+            a:visited{
+                color: aqua;
+            }
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+</head>
+<body>
+    <h1>Bem-vindo à Lobotomy Enterprises : Servidor Beta do gerente </h1>
+
+    <p>>Seja bem vindo Novo gerente, meu nome e Angela, sua assistente de IA.</p>
+    <p>>Estarei aqui para ajudar você a se mexer pela interface.</p>
+    <p>>Clique em uma das três linhas de texto para acessar as interfaces.</p>
+
+<div class="coluna">
+    <a href="/funcionarios">> listar funcionarios</a>
+    <a href="/cargos">> listar Cargos</a>
+    <a href="/setores">> listar Setores</a>
+</div>
+    <img th:src="@{/images/AngelaHappyFace.png}" class ="Angela">
+
+    <footer> @losJMR 2025</footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Novo Funcionário'">Novo Funcionário</title>
+</head>
+<body>
+    <h1 th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Novo Funcionário'">Novo Funcionário</h1>
+
+    <a th:href="@{/funcionarios}">Voltar à Lista</a>
+
+    <form th:action="${funcionario.id} != null 
+        ? @{/funcionarios/editar/{id}(id=${funcionario.id})} 
+        : @{/funcionarios/novofuncionario}" 
+        th:object="${funcionario}" method="post" style="margin-top:10px;">
+
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            
+            <label>Nome:</label>
+            <input type="text" th:field="*{nome}" required/><br/>
+
+            <label>CPF:</label>
+            <input type="text" th:field="*{CPF}" required/><br/> 
+            
+            <label>Data de Nascimento:</label>
+            <input type="date" th:field="*{dataDeNascimento}" required/><br/>
+
+            <label>Email Pessoal:</label>
+            <input type="email" th:field="*{emailPessoal}" required/><br/>
+            
+            <label>Senha:</label>
+            <input type="password" th:field="*{senha}" th:required="${funcionario.id} == null"/><br/>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Dados Profissionais</legend>
+            
+            <label>Matrícula:</label>
+            <input type="text" th:field="*{matricula}" required/><br/>
+            
+            <label>Email Empresarial:</label>
+            <input type="email" th:field="*{emailEmpresarial}" required/><br/>
+
+            <label>Nível de Formação:</label>
+            <input type="text" th:field="*{nivelFormacao}" required/><br/>
+
+            <label>Horas Semanais:</label>
+            <input type="number" th:field="*{horasSemanais}" required/><br/>
+
+            <label>Salário:</label>
+            <input type="number" th:field="*{salario}" step="0.01" required/><br/>
+        </fieldset>
+
+        <br>
+
+<fieldset>
+                <legend>Setor e Cargo</legend>
+                
+                <label>Setor:</label>
+                <select th:field="*{setorId}" required>
+                    <option value="">Selecione um Setor</option>
+                    <option th:each="s : ${setores}" 
+                            th:value="${s.id}" 
+                            th:text="${s.nome}">Nome do Setor</option>
+                </select><br/>
+
+                <label>Cargo:</label>
+                <select th:field="*{cargoId}" required>
+                    <option value="">Selecione um Cargo</option>
+                    <option th:each="c : ${cargos}" 
+                            th:value="${c.id}" 
+                            th:text="${c.titulo}">Nome do Cargo</option>
+                </select><br/>
+    
+            </fieldset>         
+            <button type="submit" style="margin-top:10px;">Salvar</button>
+        </form>
+</body>
+</html>

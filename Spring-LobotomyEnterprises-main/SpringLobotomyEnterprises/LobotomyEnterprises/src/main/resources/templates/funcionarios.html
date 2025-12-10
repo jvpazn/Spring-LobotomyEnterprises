@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Funcionários</title>
+            <style>
+            @import url('https://fonts.cdnfonts.com/css/norwester');
+
+            body{
+                font-family: 'Norwester', sans-serif;
+                background-image: url("/images/Funcionarios.png");
+                color: white;
+                background-size: cover; 
+                background-repeat: no-repeat; 
+            }
+
+            .coluna{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .Angela {
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 480px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;   
+        }
+
+        p{
+            margin: 0;
+        }
+
+            a{
+                color: aqua;
+            }
+            a:visited{
+                color: aqua;
+            }
+
+        table{
+            background-color: black;
+        }
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+</head>
+<body>
+    <h1>Funcionários</h1>
+
+<div class="coluna">
+    <p>>Para <a href="/">Voltar</a> Clique No texto diferente do diálogo.</p>
+    <p>>Para adicionar um <a th:href="@{/funcionarios/novofuncionario}">Novo Funcionário</a> Clique No texto diferente do diálogo.</p>
+    <p>>Para Buscar um Funcionario por id, bote o id dele na primeira caixinha.</p>
+    <p>>Você consegue filtrar por nome, botando apenas uma letra irá filtrar todos que possuem aquela letra.</p>
+    <p>>Para Cpf, Apenas botando o cpf completo.</p>
+
+
+
+</div>
+
+<br>
+<br>
+
+    <form th:action="@{/funcionarios/buscar}" method="get" style="margin-top:10px;">
+        <label>Buscar por ID:</label>
+        <input type="number" name="id" placeholder="Digite o ID" required/>
+        <button type="submit">Buscar</button>
+    </form>
+
+<br>
+<br>
+
+    <form th:action="@{/funcionarios/filtrar}" method="get">
+        <label>Nome:</label>
+        <input type="text" name="nome" />
+        <label>CPF:</label>
+        <input type="text" name="cpf" />
+        <button type="submit">Filtrar</button>
+    </form>
+<br>
+<br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email Empresarial</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${funcionarios}">
+                <td th:text="${f.id}">ID</td>
+                <td th:text="${f.nome}">Nome</td>
+                <td th:text="${f.CPF}">CPF</td>
+                <td th:text="${f.emailEmpresarial}">Email Empresarial</td>
+                <td>
+                    <a th:href="@{/funcionarios/editar/{id}(id=${f.id})}">Editar</a> |
+                    <a th:href="@{/funcionarios/deletar/{id}(id=${f.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <img th:src="@{/images/AngelaHappyFace.png}" class ="Angela">
+
+    <footer> @losJMR 2025</footer>
+</body>
+</html>
