@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Seja Bem Vindo</title>
+        <style>
+
+            body{
+                background-image: url("/images/Sejabemvindo.png"); 
+            }
+
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <h1>Bem-vindo à Lobotomy Enterprises : Servidor Beta do gerente </h1>
+
+    <p>>Seja bem vindo Novo gerente, meu nome e Angela, sua assistente de IA.</p>
+    <p>>Estarei aqui para ajudar você a se mexer pela interface.</p>
+    <p>>Clique em uma das três linhas de texto para acessar as interfaces.</p>
+
+<div class="coluna">
+    <a href="/funcionarios">> listar funcionarios</a>
+    <a href="/cargos">> listar Cargos</a>
+    <a href="/setores">> listar Setores</a>
+</div>
+    <img th:src="@{/images/AngelaHappyFace.png}" class ="Angela">
+
+    <footer> @losJMR 2025</footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de cargos</title>
+
+    <style>
+        body{
+            background-image: url("/images/Funcionarios.png");
+        }
+    </style>
+
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <h1>Cargos</h1>
+
+    <div class="colunamenor">
+        <p>>Para <a href="/">Voltar</a> Clique No texto diferente do diálogo.</p>
+        <p>>Para adicionar um <a th:href="@{/cargos/novocargo}">Novo Cargo</a> Clique No texto diferente.</p>
+        <p>>Para Buscar um Cargo por id, bote o id dele na primeira caixinha.</p>
+        <p>>Você consegue filtrar por título, botando apenas uma letra irá filtrar todos que possuem aquela letra.</p>
+    </div>
+
+    <br><br>
+
+    <form th:action="@{/cargos/buscar}" method="get" style="margin-top:10px;">
+        <label>Buscar por ID:</label>
+        <input type="number" name="id" placeholder="Digite o ID" required/>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <br><br>
+
+    <form th:action="@{/cargos/filtrar}" method="get">
+        <label>Título:</label>
+        <input type="text" name="titulo"/>
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Requisitos</th>
+                <th>Nível Salarial Mínimo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${cargos}">
+                <td th:text="${f.id}">ID</td>
+                <td th:text="${f.titulo}">titulo</td>
+                <td th:text="${f.requisitos}">requisitos</td>
+                <td th:text="${f.nivelSalarialMinimo}">nivel Salarial Minimo</td>
+                <td>
+                    <a th:href="@{/cargos/editar/{id}(id=${f.id})}">Editar</a> |
+                    <a th:href="@{/cargos/deletar/{id}(id=${f.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <img th:src="@{/images/AngelaHappyFace.png}" class="Angela">
+
+    <footer> @losJMR 2025</footer>
+</body>
+</html>

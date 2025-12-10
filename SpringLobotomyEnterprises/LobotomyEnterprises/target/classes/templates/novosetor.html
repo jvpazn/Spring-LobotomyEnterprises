@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${setor.id} != null ? 'Editar Setor' : 'Novo Setor'">Novo Setor</title>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+            <style>
+
+            body{
+                background-image: url("/images/Adicao.png"); 
+            }
+        
+            .binah{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+</head>
+<body>
+    <h1 th:text="${setor.id} != null ? 'Editar Setor' : 'Novo Setor'">Novo Setor</h1>
+
+   
+<div class="colunamenor">
+    <p>>Seja bem vindo Novo gerente, meu nome é Binah.</p>
+    <p>>Estarei aqui para apoio emocional.</p>
+    <p>>Para <a th:href="@{/setores}">Voltar à Lista</a> Clique No texto diferente.</p>
+</div>
+
+    <form th:action="${setor.id} != null 
+    ? @{/setores/editar/{id}(id=${setor.id})} 
+    : @{/setores/novosetor}" 
+    th:object="${setor}" method="post" style="margin-top:10px;">
+
+<fieldset>
+    <legend>Dados do Setor</legend>
+
+    <label>Nome do Setor:</label>
+    <input type="text" th:field="*{nome}" required/><br/>
+
+    <label>ID do Setor :</label>
+    <input type="text" th:field="*{id_Setor}" required/><br/> 
+
+</fieldset>
+
+<button type="submit" style="margin-top:10px;">Salvar</button>
+</form>
+
+        <img th:src="@{/images/BinahSeriousFace.png}" class ="binah">
+
+
+</body>
+</html>

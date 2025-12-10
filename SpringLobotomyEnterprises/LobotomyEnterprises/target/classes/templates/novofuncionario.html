@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Novo Funcionário'">Novo Funcionário</title>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+            <style>
+
+            body{
+                background-image: url("/images/Adicao.png"); 
+            }
+        
+            .binah{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+</head>
+<body>
+    <h1 th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Novo Funcionário'">Novo Funcionário</h1>
+
+   
+<div class="colunamenor">
+    <p>>Seja bem vindo Novo gerente, meu nome é Binah.</p>
+    <p>>Estarei aqui para auxiliar na criação e atualização de novos funcionarios.</p>
+    <p>>Para <a th:href="@{/funcionarios}">Voltar à Lista</a> Clique No texto diferente.</p>
+    <p>>Para o Email Empresarial, utilize @funcionario.lobEnterprise.com</p>
+    <p>>Para a matricula utilize Newlobloblob20XX-XXX, os ultimos 3 digitos são números ao seu critério.</p>
+</div>
+    <form th:action="${funcionario.id} != null 
+        ? @{/funcionarios/editar/{id}(id=${funcionario.id})} 
+        : @{/funcionarios/novofuncionario}" 
+        th:object="${funcionario}" method="post" style="margin-top:10px;">
+
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            
+            <label>Nome:</label>
+            <input type="text" th:field="*{nome}" required/><br/>
+
+            <label>CPF:</label>
+            <input type="text" th:field="*{CPF}" required/><br/> 
+            
+            <label>Data de Nascimento:</label>
+            <input type="date" th:field="*{dataDeNascimento}" required/><br/>
+
+            <label>Email Pessoal:</label>
+            <input type="email" th:field="*{emailPessoal}" required/><br/>
+            
+            <label>Senha:</label>
+            <input type="password" th:field="*{senha}" th:required="${funcionario.id} == null"/><br/>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Dados Profissionais</legend>
+            
+            <label>Matrícula:</label>
+            <input type="text" th:field="*{matricula}" required/><br/>
+            
+            <label>Email Empresarial:</label>
+            <input type="email" th:field="*{emailEmpresarial}" required/><br/>
+
+            <label>Nível de Formação:</label>
+            <input type="text" th:field="*{nivelFormacao}" required/><br/>
+
+            <label>Horas Semanais:</label>
+            <input type="number" th:field="*{horasSemanais}" required/><br/>
+
+            <label>Salário:</label>
+            <input type="number" th:field="*{salario}" step="0.01" required/><br/>
+        </fieldset>
+
+        <br>
+
+<fieldset>
+                <legend>Setor e Cargo</legend>
+                
+                <label>Setor:</label>
+                <select th:field="*{setorId}" required>
+                    <option value="">Selecione um Setor</option>
+                    <option th:each="s : ${setores}" 
+                            th:value="${s.id}" 
+                            th:text="${s.nome}">Nome do Setor</option>
+                </select><br/>
+
+                <label>Cargo:</label>
+                <select th:field="*{cargoId}" required>
+                    <option value="">Selecione um Cargo</option>
+                    <option th:each="c : ${cargos}" 
+                            th:value="${c.id}" 
+                            th:text="${c.titulo}">Nome do Cargo</option>
+                </select><br/>
+    
+            </fieldset>         
+            <button type="submit" style="margin-top:10px;">Salvar</button>
+        </form>
+        
+        <img th:src="@{/images/BinahSeriousFace.png}" class ="binah">
+
+</body>
+</html>

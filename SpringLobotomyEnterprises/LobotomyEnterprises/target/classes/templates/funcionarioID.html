@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Funcionário por ID</title>
+    <style>
+
+            body{
+                background-image: url("/images/Id.png"); 
+            }
+
+            .Chesed{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <h1>Detalhes do Funcionário</h1>
+<div class="colunamenor">
+    <p>>Seja bem vindo novo gerente, meu nome é Chesed.</p>
+    <p>>Acredite nem eu, nem você Quer trabalhar. Só aproveite e descanse aqui.</p>
+    <p>>Para <a th:href="@{/funcionarios}">Voltar à Lista</a> Clique No texto diferente do diálogo.</p>
+    <p>>Segue as informações do funcionario.</p>
+
+</div>
+    <br>
+    <span><b>ID:</b></span> <span th:text="${funcionario.id}">ID</span>
+    <br>
+    <span><b>Nome:</b></span> <span th:text="${funcionario.nome}">[Nome do Funcionário]</span>
+    <br>
+    <span><b>CPF:</b></span> <span th:text="${funcionario.CPF}">[CPF]</span>
+    <br>
+    <span><b>Email Empresarial:</b></span> <span th:text="${funcionario.emailEmpresarial}">[Email Pessoal]</span>
+    <br>
+    <span><b>Setor (ID):</b></span> <span th:text="${funcionario.setorId}">[ID do Setor]</span>
+    <br>
+    <span><b>Cargo (ID):</b></span> <span th:text="${funcionario.cargoId}">[ID do Cargo]</span>
+
+    <img th:src="@{/images/Chesed.png}" class ="Chesed">
+
+</body>
+</html>

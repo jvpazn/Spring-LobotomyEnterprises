@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${cargo.id} != null ? 'Editar Cargo' : 'Novo Cargo'">Novo Cargo</title>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+            <style>
+
+            body{
+                background-image: url("/images/Adicao.png"); 
+            }
+
+            textarea{
+                color: black !important;
+            }
+        
+            .binah{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+</head>
+<body>
+<h1 th:text="${cargo.id} != null ? 'Editar Cargo' : 'Novo Cargo'">Novo Cargo</h1>
+
+<div class="colunamenor">
+    <p>>Seja bem vindo Novo gerente, meu nome é Binah.</p>
+    <p>>Estarei aqui para apoiar sua construção ou edição do cargo.</p>
+    <p>>Para <a th:href="@{/cargos}">Voltar à Lista</a> Clique No texto diferente.</p>
+    <p>>Tente ser o menos redundante possível na descrição.</p>
+
+</div>
+
+<form th:action="${cargo.id} != null 
+    ? @{/cargos/editar/{id}(id=${cargo.id})} 
+    : @{/cargos/novocargo}" 
+    th:object="${cargo}" method="post" style="margin-top:10px;">
+
+    <fieldset>
+        <legend>Dados do Cargo</legend>
+
+        <label>Título:</label>
+        <input type="text" th:field="*{titulo}" required/><br/>
+
+        <label>Descrição:</label>
+        <textarea th:field="*{descricao}" required></textarea><br/> 
+
+        <label>Nível Salarial Mínimo:</label>
+        <input type="number" th:field="*{nivelSalarialMinimo}" step="1" required/><br/>
+
+        <label>Requisitos:</label>
+        <textarea th:field="*{requisitos}" required></textarea><br/>
+
+    </fieldset>
+
+    <button type="submit" style="margin-top:10px;">Salvar</button>
+
+            <img th:src="@{/images/BinahSeriousFace.png}" class ="binah">
+
+</form>
+</body>
+</html>

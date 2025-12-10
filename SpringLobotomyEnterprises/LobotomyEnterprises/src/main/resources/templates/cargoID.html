@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+     <style>
+
+            body{
+                background-image: url("/images/Id.png"); 
+            }
+
+            .Chesed{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <h1>Detalhes do Cargo</h1>
+<div class="colunamenor">
+    <p>>Seja bem vindo novo gerente, meu nome é Chesed.</p>
+    <p>>Toparia um cafézinho?.</p>
+    <p>>Para <a th:href="@{/cargos}">Voltar à Lista</a> Clique No texto diferente do diálogo.</p>
+    <p>>Segue as informações do Cargo.</p>
+
+</div>
+    <br>
+    <span><b>ID:</b></span> <span th:text="${cargo.id}">ID</span>
+    <br>
+    <span><b>titulo:</b></span> <span th:text="${cargo.titulo}">[titulo do Cargo]</span>
+    <br>
+    <span><b>descricao:</b></span> <span th:text="${cargo.descricao}">[descricao do cargo]</span>
+    <br>
+    <span><b>nivel Salarial Minimo:</b></span> <span th:text="${cargo.nivelSalarialMinimo}">[nivelSalarialMinimo]</span>
+    <br>
+    <span><b>requisitos:</b></span> <span th:text="${cargo.requisitos}">[requisitos]</span>
+
+    <img th:src="@{/images/Chesed.png}" class ="Chesed">
+
+</body>
+</html>

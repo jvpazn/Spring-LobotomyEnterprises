@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Setor por ID</title>
+     <style>
+
+            body{
+                background-image: url("/images/Id.png"); 
+            }
+
+            .Chesed{
+            position: fixed;
+            bottom: 0;       
+            right: 0;         
+            width: 360px;   
+            height: auto;
+            z-index: 1000;   
+            margin: 10px;  
+            }
+
+        </style>
+    <link rel="icon" type="image/png" th:href="@{/images/faviicon.png}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <h1>Detalhes do Setor</h1>
+<div class="colunamenor">
+    <p>>Seja bem vindo novo gerente, meu nome é Chesed.</p>
+    <p>>Incrivel nessa empresa a gente não extrair a energia dos funcionarios, nem matar-los.</p>
+    <p>>Para <a th:href="@{/setores}">Voltar à Lista</a> Clique No texto diferente do diálogo.</p>
+    <p>>Segue as informações do Setor.</p>
+
+</div>
+    <br>
+    <span><b>ID:</b></span> <span th:text="${setor.id}">ID</span>
+    <br>
+    <span><b>nome:</b></span> <span th:text="${setor.nome}">[nome do setor]</span>
+    <br>
+    <span><b>id do setor:</b></span> <span th:text="${setor.id_Setor}">[Id do setor]</span>
+
+<img th:src="@{/images/Chesed.png}" class ="Chesed">
+
+
+</body>
+</html>
